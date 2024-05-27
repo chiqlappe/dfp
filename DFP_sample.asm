@@ -38,7 +38,7 @@ SYS_LAST30H		equ	$EA66
 	org	$C000
 
 ;-------------------------------
-;フォルダ番号1,トラック番号1の曲を演奏するデモプログラム
+;フォルダ番号1,トラック番号2の曲を演奏するデモプログラム
 ;-------------------------------
 DEMO:	CALL	DFP.RESET
 
@@ -46,8 +46,8 @@ DEMO:	CALL	DFP.RESET
 	CALL	SYS_PRINT
 	CALL	SYS_KEYWAIT
 
-	LD	D,1			;フォルダ番号
-	LD	E,1			;トラック番号
+	LD	E,1			;フォルダ番号
+	LD	D,2			;トラック番号
 	CALL	DFP.PGM			;フォルダとトラック番号を指定して再生する
 
 	LD	HL,.MES2
@@ -74,18 +74,17 @@ DFP:
 	LD	DE,$0000		;パラメータは無し
 	CALL	.SEND			;コマンド送信
 
-	LD	E,DFP_SD		;リセット時の選択メディアはSDにする
+	LD	D,DFP_SD		;リセット時の選択メディアはSDにする
 ;;	JR	.MEDIA
 
 	;再生メディアを選択する
-	;ただし設定に関わらずUSBメモリスティックがSDより優先される
-	; in:E=メディア番号
+	; in:D=メディア番号
 .MEDIA:	LD	A,DFP_CMD_MEDIA
-	LD	D,0
+	LD	E,0
 	JR	.SEND
 
 	;フォルダとトラック番号を指定して再生する
-	; in:D=フォルダ番号{1~99},E=トラック番号{1~255}
+	; in:E=フォルダ番号{1~99},D=トラック番号{1~255}
 .PGM:	LD	A,DFP_CMD_PGM
 	JR	.SEND
 
@@ -112,18 +111,13 @@ DFP:
 	JR	.SEND
 
 	;コマンド送信
-	; in:A=コマンド,D=パラメータ上位バイト,E=パラメータ下位バイト
+	; in:A=コマンド,E=パラメータ上位バイト,D=パラメータ下位バイト
 	; out:CY=エラーフラグ
-.SEND:	LD	HL,.TEMPLATE+3
-	LD	(HL),A			;コマンド
-	INC	HL
-	INC	HL
-	LD	(HL),D			;パラメータ上位バイト
-	INC	HL
-	LD	(HL),E			;パラメータ下位バイト
+.SEND:	LD	(.TEMPLATE+3),A
+	LD	(.TEMPLATE+5),DE
 
 	;チェックサムを求める
-	;1バイト目から6バイト目が対象
+	;+1バイト目から6バイトが対象
 	LD	DE,.TEMPLATE+1
 	LD	HL,$0000
 	LD	B,6			;データ長
@@ -135,18 +129,15 @@ DFP:
 	SUB	L
 	LD	H,A
 	DJNZ	.L1
-
 	EX	DE,HL
 	LD	HL,$0000
 	OR	A
-	SBC	HL,DE
+	SBC	HL,DE			;HL=チェックサム
 
-	LD	DE,.TEMPLATE+7
 	LD	A,H
-	LD	(DE),A
-	INC	DE
-	LD	A,L
-	LD	(DE),A
+	LD	H,L
+	LD	L,A
+	LD	(.TEMPLATE+7),HL
 
 	LD	HL,.TEMPLATE
 	LD	B,DFP_SIZE
