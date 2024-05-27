@@ -187,15 +187,16 @@ UART:
 	; in:A=モードワード
 .RESET:	PUSH	AF			;モードワードを退避
 	XOR	A			;リセットの前にダミーデータを送信
-	OUT	(UARTC),A
-	OUT	(UARTC),A
-	OUT	(UARTC),A
+	LD	C,UARTC
+	OUT	(C),A
+	OUT	(C),A
+	OUT	(C),A
 	LD	A,%01000000		;内部リセット
-	OUT	(UARTC),A		;コマンド実行
+	OUT	(C),A			;コマンド実行
 	POP	AF			;モードワードを復帰
-	OUT	(UARTC),A		;モードセット
+	OUT	(C),A			;モードセット
 	LD	A,%00110111		;送信イネーブル,DTRをLOW,受信イネーブル,エラーフラグをリセット,RTSをLOW
-	OUT	(UARTC),A		;コマンド実行
+	OUT	(C),A			;コマンド実行
 
 	LD	A,(SYS_LAST30H)		;8251の接続先をシリアルソケットに変更する
 	AND	%11001111
