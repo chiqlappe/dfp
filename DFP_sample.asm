@@ -185,7 +185,8 @@ UART:
 
 	;UARTリセット
 	; in:A=モードワード
-.RESET:	PUSH	AF			;モードワードを退避
+.RESET:	PUSH	BC
+	PUSH	AF			;モードワードを退避
 	XOR	A			;リセットの前にダミーデータを送信
 	LD	C,UARTC
 	OUT	(C),A
@@ -204,6 +205,7 @@ UART:
 	LD	(SYS_LAST30H),A
 	OUT	($30),A
 
+	POP	BC
 	RET
 
 
