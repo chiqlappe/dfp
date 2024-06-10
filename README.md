@@ -3,7 +3,7 @@ subroutines.asm
 - デモプログラムで使用されている、DFPaler miniを操作するための機械語サブルーチンです
 
 ## PC-8001用 DFPlayer mini デモプログラム
-dfp_basic.txt
+demo.txt
 - BASICからDFPlayer miniを操作するためのサンプル・プログラムです
 - コマンドとパラメータはチップ・マニュアルの４ページを参照して下さい
 
