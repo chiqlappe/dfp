@@ -5,8 +5,8 @@ DFP_sample.asm
 
 ## PC-8001用 DFPlayer mini デモプログラム
 dfp_basic.txt
-- BASICからDFPlayer miniを操作できます
-- コマンドとパラメータはチップ・マニュアルの４ページを参照して下さい。
+- BASICからDFPlayer miniを操作するためのサンプル・プログラムです
+- コマンドとパラメータはチップ・マニュアルの４ページを参照して下さい
 
 
 ## 参考資料
