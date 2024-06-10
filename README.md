@@ -1,17 +1,15 @@
-PC-8001用 DFPlayer mini ドライバ
+## PC-8001用 DFPlayer mini ドライバ
 DFP_sample.asm
+- 機械語でDFPaler miniを操作するためのサンプル・サブルーチンです
 
-　機械語でDFPaler miniを操作するためのサンプル・サブルーチンです
 
-
-PC-8001用 DFPlayer mini デモプログラム
+## PC-8001用 DFPlayer mini デモプログラム
 dfp_basic.txt
+- BASICからDFPlayer miniを操作できます
+- コマンドとパラメータはチップ・マニュアルの４ページを参照して下さい。
 
-　BASICからDFPlayer miniを操作できます。コマンドとパラメータはチップ・マニュアルの４ページを参照して下さい。
 
-
-
-参考資料
+## 参考資料
 
 DFPlayer mini (MP3プレーヤー)
 https://akizukidenshi.com/catalog/g/g112544/
