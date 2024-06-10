@@ -1,108 +1,108 @@
 
 ;-------------------------------
-;BASIC—pƒTƒuƒ‹[ƒ`ƒ“
-;ƒŠƒƒP[ƒ^ƒuƒ‹
+;PC-8001ç”¨ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³
+;ã“ã®ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã¯ãƒªãƒ­ã‚±ãƒ¼ã‚¿ãƒ–ãƒ«ã§ã™
 ;
-;’ˆÓ
-; Žg—pŽž‚ÍƒVƒŠƒAƒ‹ƒ|[ƒg‚ð‰º‹L‚ÌÝ’è‚É‚·‚é‚±‚Æ
-;  PC-8001   :“à•”‚ÌƒWƒƒƒ“ƒp‚ð1-5‚É‚·‚é
-;  PC-8001mk2:”w–Ê‚ÌƒWƒƒƒ“ƒpƒXƒCƒbƒ`‚ð4‚É‚·‚é
+;æ³¨æ„
+; ä½¿ç”¨æ™‚ã¯ã‚·ãƒªã‚¢ãƒ«ãƒãƒ¼ãƒˆã‚’ä¸‹è¨˜ã®è¨­å®šã«ã™ã‚‹ã“ã¨
+;  PC-8001   :å†…éƒ¨ã®ã‚¸ãƒ£ãƒ³ãƒ‘ã‚’1-5ã«ã™ã‚‹
+;  PC-8001mk2:èƒŒé¢ã®ã‚¸ãƒ£ãƒ³ãƒ‘ã‚¹ã‚¤ãƒƒãƒã‚’4ã«ã™ã‚‹
 ;
-; ƒtƒHƒ‹ƒ_–¼‚Í2Œ…‚Ì”Žš
-;  (—á) "01"
-; ƒtƒ@ƒCƒ‹–¼‚Í3Œ…‚Ì”Žš+".mp3"
-;  (—á) "001.mp3"
+; ãƒ•ã‚©ãƒ«ãƒ€åã¯2æ¡ã®æ•°å­—
+;  (ä¾‹) "01"
+; ãƒ•ã‚¡ã‚¤ãƒ«åã¯3æ¡ã®æ•°å­—+".mp3"
+;  (ä¾‹) "001.mp3"
 ;
-;ŽQlŽ‘—¿uKT403A ƒ`ƒbƒvEƒ}ƒjƒ…ƒAƒ‹v
+;å‚è€ƒè³‡æ–™ã€ŒKT403A ãƒãƒƒãƒ—ãƒ»ãƒžãƒ‹ãƒ¥ã‚¢ãƒ«ã€
 ;   https://drive.google.com/file/d/1FfOZJdB9Q0GYQllW3_FLckE7aC8jizcE/view
 ;-------------------------------
 
-DFP_CMD_MEDIA		equ	$09	;Ä¶‚·‚éƒfƒoƒCƒX‚ð‘I‘ð‚·‚é
-DFP_CMD_RESET		equ	$0C	;ƒ`ƒbƒv‚ðƒŠƒZƒbƒg‚·‚é
+DFP_CMD_MEDIA		equ	$09	;å†ç”Ÿã™ã‚‹ãƒ‡ãƒã‚¤ã‚¹ã‚’é¸æŠžã™ã‚‹
+DFP_CMD_RESET		equ	$0C	;ãƒãƒƒãƒ—ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
 DFP_USB			equ	1	;USB
 DFP_SD			equ	2	;SD
-DFP_SIZE		equ	10	;ƒRƒ}ƒ“ƒhƒoƒCƒg—ñ‚ÌƒTƒCƒY
-UARTD			equ	$20	;UART ƒf[ƒ^ƒ|[ƒg
-UARTC			equ	UARTD+1	;UART ƒRƒ“ƒgƒ[ƒ‹ƒ|[ƒg
-UART_TIMEOUT		equ	$1000	;ƒ^ƒCƒ€ƒAƒEƒgŽžŠÔ
-TXRDY			equ	0	;‘—MƒŒƒfƒBƒXƒe[ƒ^ƒX‚Ìƒrƒbƒg”Ô†
-RXRDY			equ	1	;ŽóMƒŒƒfƒBƒXƒe[ƒ^ƒX‚Ìƒrƒbƒg”Ô†
+DFP_SIZE		equ	10	;ã‚³ãƒžãƒ³ãƒ‰ãƒã‚¤ãƒˆåˆ—ã®ã‚µã‚¤ã‚º
+UARTD			equ	$20	;UART ãƒ‡ãƒ¼ã‚¿ãƒãƒ¼ãƒˆ
+UARTC			equ	UARTD+1	;UART ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒãƒ¼ãƒˆ
+UART_TIMEOUT		equ	$1000	;ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆæ™‚é–“
+TXRDY			equ	0	;é€ä¿¡ãƒ¬ãƒ‡ã‚£ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®ãƒ“ãƒƒãƒˆç•ªå·
+RXRDY			equ	1	;å—ä¿¡ãƒ¬ãƒ‡ã‚£ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®ãƒ“ãƒƒãƒˆç•ªå·
 
 SYS_LAST30H		equ	$EA66
-SYS_PRINT		equ 	$52ED	;HLˆÈ~‚ÉŠi”[‚³‚ê‚½•¶Žš—ñ(0I’[)‚ðo—Í‚·‚é
+SYS_PRINT		equ 	$52ED	;HLä»¥é™ã«æ ¼ç´ã•ã‚ŒãŸæ–‡å­—åˆ—(0çµ‚ç«¯)ã‚’å‡ºåŠ›ã™ã‚‹
 
 
-	org	$E000			;ƒŠƒƒP[ƒ^ƒuƒ‹
+	org	$E000			;ãƒªãƒ­ã‚±ãƒ¼ã‚¿ãƒ–ãƒ«
 
-	JP	DFP.USR_RESET		;+00 ‰Šú‰»ƒ‹[ƒ`ƒ“BÅ‰‚Éˆê“x‚¾‚¯USRŠÖ”‚ÅƒR[ƒ‹‚·‚éBƒGƒ‰[‚È‚ç•Ô‚è’l=-1
-	JP	DFP.USR_CMD		;+03 ƒRƒ}ƒ“ƒh‘—Mƒ‹[ƒ`ƒ“BƒRƒ}ƒ“ƒh‚Æƒpƒ‰ƒ[ƒ^‚ðƒƒ‚ƒŠ‚ÉPOKE‚µ‚Ä‚©‚çUSRŠÖ”‚ÅƒR[ƒ‹‚·‚éBƒGƒ‰[‚È‚ç•Ô‚è’l=-1
+	JP	DFP.USR_RESET		;+00 åˆæœŸåŒ–ãƒ«ãƒ¼ãƒãƒ³ã€‚æœ€åˆã«ä¸€åº¦ã ã‘USRé–¢æ•°ã§ã‚³ãƒ¼ãƒ«ã™ã‚‹ã€‚ã‚¨ãƒ©ãƒ¼ãªã‚‰è¿”ã‚Šå€¤=-1
+	JP	DFP.USR_CMD		;+03 ã‚³ãƒžãƒ³ãƒ‰é€ä¿¡ãƒ«ãƒ¼ãƒãƒ³ã€‚ã‚³ãƒžãƒ³ãƒ‰ã¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ãƒ¡ãƒ¢ãƒªã«POKEã—ã¦ã‹ã‚‰USRé–¢æ•°ã§ã‚³ãƒ¼ãƒ«ã™ã‚‹ã€‚ã‚¨ãƒ©ãƒ¼ãªã‚‰è¿”ã‚Šå€¤=-1
 
 
 ;-------------------------------
-;DFPlayer mini ƒhƒ‰ƒCƒo
+;DFPlayer mini ãƒ‰ãƒ©ã‚¤ãƒ
 ;-------------------------------
 DFP:
 
-	;‘—Mƒf[ƒ^
-.DATA:	db	$7E,	; +0ƒoƒCƒg–Ú=ŠJŽnƒR[ƒh($7E)
-	db	$FF,	; +1ƒoƒCƒg–Ú=ƒo[ƒWƒ‡ƒ“($FF)
-	db	$06,	; +2ƒoƒCƒg–Ú=ƒf[ƒ^’·($06)
-.CMD:	db	$00,	; +3ƒoƒCƒg–Ú=ƒRƒ}ƒ“ƒh
-	db	$00,	; +4ƒoƒCƒg–Ú=ƒtƒB[ƒhƒoƒbƒNƒtƒ‰ƒO($00=‚È‚µ)
-.PARAM:	db	$00,	; +5ƒoƒCƒg–Ú=ƒpƒ‰ƒ[ƒ^‚ÌãˆÊ
-	db	$00,	; +6ƒoƒCƒg–Ú=ƒpƒ‰ƒ[ƒ^‚Ì‰ºˆÊ
-.CSUM:	db	$00,	; +7ƒoƒCƒg–Ú=ƒ`ƒFƒbƒNƒTƒ€‚ÌãˆÊ
-	db	$00,	; +8ƒoƒCƒg–Ú=ƒ`ƒFƒbƒNƒTƒ€‚Ì‰ºˆÊ
-	db	$EF	; +9ƒoƒCƒg–Ú=I—¹ƒR[ƒh($EF)
+	;é€ä¿¡ãƒ‡ãƒ¼ã‚¿
+.DATA:	db	$7E,	; +0ãƒã‚¤ãƒˆç›®=é–‹å§‹ã‚³ãƒ¼ãƒ‰($7E)
+	db	$FF,	; +1ãƒã‚¤ãƒˆç›®=ãƒãƒ¼ã‚¸ãƒ§ãƒ³($FF)
+	db	$06,	; +2ãƒã‚¤ãƒˆç›®=ãƒ‡ãƒ¼ã‚¿é•·($06)
+.CMD:	db	$00,	; +3ãƒã‚¤ãƒˆç›®=ã‚³ãƒžãƒ³ãƒ‰
+	db	$00,	; +4ãƒã‚¤ãƒˆç›®=ãƒ•ã‚£ãƒ¼ãƒ‰ãƒãƒƒã‚¯ãƒ•ãƒ©ã‚°($00=ãªã—)
+.PARAM:	db	$00,	; +5ãƒã‚¤ãƒˆç›®=ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ä¸Šä½
+	db	$00,	; +6ãƒã‚¤ãƒˆç›®=ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®ä¸‹ä½
+.CSUM:	db	$00,	; +7ãƒã‚¤ãƒˆç›®=ãƒã‚§ãƒƒã‚¯ã‚µãƒ ã®ä¸Šä½
+	db	$00,	; +8ãƒã‚¤ãƒˆç›®=ãƒã‚§ãƒƒã‚¯ã‚µãƒ ã®ä¸‹ä½
+	db	$EF	; +9ãƒã‚¤ãƒˆç›®=çµ‚äº†ã‚³ãƒ¼ãƒ‰($EF)
 
-	;USRŠÖ”—p
-	;ƒ|[ƒg‚Æƒ`ƒbƒv‚Ì‰Šú‰»
+	;USRé–¢æ•°ç”¨
+	;ãƒãƒ¼ãƒˆã¨ãƒãƒƒãƒ—ã®åˆæœŸåŒ–
 .USR_RESET:
-	PUSH	HL			;•Ô‚è’l—p‚ÉFAC+5‚ð‘Þ”ð
+	PUSH	HL			;è¿”ã‚Šå€¤ç”¨ã«FAC+5ã‚’é€€é¿
 
-	LD	A,%01001101		;ƒ{[ƒŒ[ƒg=x1,ƒLƒƒƒ‰ƒNƒ^’·=8ƒrƒbƒg,ƒXƒgƒbƒvƒrƒbƒg=1ƒrƒbƒg
-	CALL	UART.RESET		;ƒVƒŠƒAƒ‹ƒ|[ƒg‚ð‰Šú‰»‚·‚é
+	LD	A,%01001101		;ãƒœãƒ¼ãƒ¬ãƒ¼ãƒˆ=x1,ã‚­ãƒ£ãƒ©ã‚¯ã‚¿é•·=8ãƒ“ãƒƒãƒˆ,ã‚¹ãƒˆãƒƒãƒ—ãƒ“ãƒƒãƒˆ=1ãƒ“ãƒƒãƒˆ
+	CALL	UART.RESET		;ã‚·ãƒªã‚¢ãƒ«ãƒãƒ¼ãƒˆã‚’åˆæœŸåŒ–ã™ã‚‹
 
 	LD	HL,$0000
-	LD	(.PARAM),HL		;ƒpƒ‰ƒ[ƒ^
-	LD	A,DFP_CMD_RESET		;ƒ`ƒbƒv‚ðƒŠƒZƒbƒg‚·‚é
+	LD	(.PARAM),HL		;ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+	LD	A,DFP_CMD_RESET		;ãƒãƒƒãƒ—ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
 	LD	(.CMD),A
 	CALL	.SEND			;out:CY
 	JR	NC,.GOOD
 ;;	JR	.ERROR
 
-.ERROR:	LD	A,$FF			;ƒGƒ‰[‚È‚ç-1‚ð•Ô‚è’l‚Æ‚·‚é
+.ERROR:	LD	A,$FF			;ã‚¨ãƒ©ãƒ¼ãªã‚‰-1ã‚’è¿”ã‚Šå€¤ã¨ã™ã‚‹
 	JR	.EXIT
 
-.GOOD:	LD	A,0			;³í‚È‚ç0‚ð•Ô‚è’l‚Æ‚·‚é
+.GOOD:	LD	A,0			;æ­£å¸¸ãªã‚‰0ã‚’è¿”ã‚Šå€¤ã¨ã™ã‚‹
 .EXIT:	POP	HL			;=FAC+5
-	LD	(HL),A			;•Ô‚è’l‚ðƒZƒbƒg‚·‚é
+	LD	(HL),A			;è¿”ã‚Šå€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
 	INC	HL
 	LD	(HL),A
 	RET
 
-	;USRŠÖ”—p
-	;ƒRƒ}ƒ“ƒh‘—M
-	; in:A=ˆø”‚ÌŒ^,HL=FAC+5,(DFP.PARAM)=ƒpƒ‰ƒ[ƒ^ãˆÊ,(DFP.PARAM+1)=ƒpƒ‰ƒ[ƒ^‰ºˆÊ,(DFP.CMD)=ƒRƒ}ƒ“ƒh”Ô†
+	;USRé–¢æ•°ç”¨
+	;ã‚³ãƒžãƒ³ãƒ‰é€ä¿¡
+	; in:A=å¼•æ•°ã®åž‹,HL=FAC+5,(DFP.PARAM)=ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä¸Šä½,(DFP.PARAM+1)=ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä¸‹ä½,(DFP.CMD)=ã‚³ãƒžãƒ³ãƒ‰ç•ªå·
 .USR_CMD:
 	CP	2
-	RET	NZ			;ˆø”‚ª®”Œ^‚Å‚È‚¯‚ê‚Îˆ—‚µ‚È‚¢
+	RET	NZ			;å¼•æ•°ãŒæ•´æ•°åž‹ã§ãªã‘ã‚Œã°å‡¦ç†ã—ãªã„
 
-	PUSH	HL			;•Ô‚è’l—p‚ÉFAC+5‚ð‘Þ”ð
+	PUSH	HL			;è¿”ã‚Šå€¤ç”¨ã«FAC+5ã‚’é€€é¿
 
 	CALL	.SEND			;out:CY
 	JR	NC,.GOOD
 	JR	.ERROR
 
-	; in:(DFP.PARAM)=ƒpƒ‰ƒ[ƒ^ãˆÊ,(DFP.PARAM+1)=ƒpƒ‰ƒ[ƒ^‰ºˆÊ,(DFP.CMD)=ƒRƒ}ƒ“ƒh”Ô†
-	; out:CY=ƒGƒ‰[ƒtƒ‰ƒO
+	; in:(DFP.PARAM)=ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä¸Šä½,(DFP.PARAM+1)=ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä¸‹ä½,(DFP.CMD)=ã‚³ãƒžãƒ³ãƒ‰ç•ªå·
+	; out:CY=ã‚¨ãƒ©ãƒ¼ãƒ•ãƒ©ã‚°
 .SEND:
 
-	;ƒ`ƒFƒbƒNƒTƒ€‚ð‹‚ß‚é
-	; +1ƒoƒCƒg–Ú‚©‚ç6ƒoƒCƒg‚ª‘ÎÛ
+	;ãƒã‚§ãƒƒã‚¯ã‚µãƒ ã‚’æ±‚ã‚ã‚‹
+	; +1ãƒã‚¤ãƒˆç›®ã‹ã‚‰6ãƒã‚¤ãƒˆãŒå¯¾è±¡
 	LD	DE,.DATA+1
 	LD	HL,$0000
-	LD	B,6			;ƒf[ƒ^’·
+	LD	B,6			;ãƒ‡ãƒ¼ã‚¿é•·
 .L1:	LD	A,(DE)
 	INC	DE
 	ADD	A,L			;HL+=A
@@ -114,11 +114,11 @@ DFP:
 	EX	DE,HL
 	LD	HL,$0000
 	OR	A
-	SBC	HL,DE			;HL=ƒ`ƒFƒbƒNƒTƒ€
+	SBC	HL,DE			;HL=ãƒã‚§ãƒƒã‚¯ã‚µãƒ 
 	LD	A,H
 	LD	H,L
 	LD	L,A
-	LD	(.CSUM),HL		;ƒ`ƒFƒbƒNƒTƒ€‚ðƒf[ƒ^‚ÉƒZƒbƒg‚·‚é
+	LD	(.CSUM),HL		;ãƒã‚§ãƒƒã‚¯ã‚µãƒ ã‚’ãƒ‡ãƒ¼ã‚¿ã«ã‚»ãƒƒãƒˆã™ã‚‹
 
 	LD	HL,.DATA
 	LD	B,DFP_SIZE
@@ -126,46 +126,46 @@ DFP:
 
 
 ;-------------------------------
-;UART8251 ƒhƒ‰ƒCƒo
+;UART8251 ãƒ‰ãƒ©ã‚¤ãƒ
 ;-------------------------------
 UART:
-	;ƒf[ƒ^‘—M
-	; in:HL=‘—Mƒf[ƒ^ƒ|ƒCƒ“ƒ^,B=ƒoƒCƒg”
-	; out:CY=ƒGƒ‰[ƒtƒ‰ƒO
-.SEND:	LD	C,UARTD			;o—Íæ‚Ìƒ|[ƒgƒAƒhƒŒƒX
+	;ãƒ‡ãƒ¼ã‚¿é€ä¿¡
+	; in:HL=é€ä¿¡ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿,B=ãƒã‚¤ãƒˆæ•°
+	; out:CY=ã‚¨ãƒ©ãƒ¼ãƒ•ãƒ©ã‚°
+.SEND:	LD	C,UARTD			;å‡ºåŠ›å…ˆã®ãƒãƒ¼ãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹
 .L2:	LD	DE,UART_TIMEOUT
 .L1:	DEC	DE
 	LD	A,D
 	OR	E
 	JR	NZ,.L3
-	SCF				;ƒ^ƒCƒ€ƒAƒEƒg‚ª”­¶‚µ‚½‚çCY‚ð—§‚Ä‚Ä–ß‚é
+	SCF				;ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆãŒç™ºç”Ÿã—ãŸã‚‰CYã‚’ç«‹ã¦ã¦æˆ»ã‚‹
 	RET
 
-.L3:	IN	A,(UARTC)		;‘—MREADY‚É‚È‚é‚Ü‚Å‘Ò‚Â
+.L3:	IN	A,(UARTC)		;é€ä¿¡READYã«ãªã‚‹ã¾ã§å¾…ã¤
 	AND	1<<TXRDY
 	JR	Z,.L1
-	OUTI				;Žw’è‚³‚ê‚½ƒoƒCƒg”‚Ìƒf[ƒ^‚ð‘—M‚·‚é
+	OUTI				;æŒ‡å®šã•ã‚ŒãŸãƒã‚¤ãƒˆæ•°ã®ãƒ‡ãƒ¼ã‚¿ã‚’é€ä¿¡ã™ã‚‹
 	JR	NZ,.L2
-	OR	A			;‚·‚×‚Ä‚Ìƒf[ƒ^‚ð‘—M‚µ‚½‚çCY‚ð~‚ë‚µ‚Ä–ß‚é
+	OR	A			;ã™ã¹ã¦ã®ãƒ‡ãƒ¼ã‚¿ã‚’é€ä¿¡ã—ãŸã‚‰CYã‚’é™ã‚ã—ã¦æˆ»ã‚‹
 	RET
 
-	;UARTƒŠƒZƒbƒg
-	; in:A=ƒ‚[ƒhƒ[ƒh
+	;UARTãƒªã‚»ãƒƒãƒˆ
+	; in:A=ãƒ¢ãƒ¼ãƒ‰ãƒ¯ãƒ¼ãƒ‰
 .RESET:	PUSH	BC
-	PUSH	AF			;ƒ‚[ƒhƒ[ƒh‚ð‘Þ”ð
-	XOR	A			;ƒŠƒZƒbƒg‚Ì‘O‚Éƒ_ƒ~[ƒf[ƒ^‚ð‘—M
+	PUSH	AF			;ãƒ¢ãƒ¼ãƒ‰ãƒ¯ãƒ¼ãƒ‰ã‚’é€€é¿
+	XOR	A			;ãƒªã‚»ãƒƒãƒˆã®å‰ã«ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’é€ä¿¡
 	LD	C,UARTC
 	OUT	(C),A
 	OUT	(C),A
 	OUT	(C),A
-	LD	A,%01000000		;“à•”ƒŠƒZƒbƒg
-	OUT	(C),A			;ƒRƒ}ƒ“ƒhŽÀs
-	POP	AF			;ƒ‚[ƒhƒ[ƒh‚ð•œ‹A
-	OUT	(C),A			;ƒ‚[ƒhƒZƒbƒg
-	LD	A,%00110111		;‘—MƒCƒl[ƒuƒ‹,DTR‚ðLOW,ŽóMƒCƒl[ƒuƒ‹,ƒGƒ‰[ƒtƒ‰ƒO‚ðƒŠƒZƒbƒg,RTS‚ðLOW
-	OUT	(C),A			;ƒRƒ}ƒ“ƒhŽÀs
+	LD	A,%01000000		;å†…éƒ¨ãƒªã‚»ãƒƒãƒˆ
+	OUT	(C),A			;ã‚³ãƒžãƒ³ãƒ‰å®Ÿè¡Œ
+	POP	AF			;ãƒ¢ãƒ¼ãƒ‰ãƒ¯ãƒ¼ãƒ‰ã‚’å¾©å¸°
+	OUT	(C),A			;ãƒ¢ãƒ¼ãƒ‰ã‚»ãƒƒãƒˆ
+	LD	A,%00110111		;é€ä¿¡ã‚¤ãƒãƒ¼ãƒ–ãƒ«,DTRã‚’LOW,å—ä¿¡ã‚¤ãƒãƒ¼ãƒ–ãƒ«,ã‚¨ãƒ©ãƒ¼ãƒ•ãƒ©ã‚°ã‚’ãƒªã‚»ãƒƒãƒˆ,RTSã‚’LOW
+	OUT	(C),A			;ã‚³ãƒžãƒ³ãƒ‰å®Ÿè¡Œ
 
-	LD	A,(SYS_LAST30H)		;8251‚ÌÚ‘±æ‚ðƒVƒŠƒAƒ‹ƒ\ƒPƒbƒg‚É•ÏX‚·‚é
+	LD	A,(SYS_LAST30H)		;8251ã®æŽ¥ç¶šå…ˆã‚’ã‚·ãƒªã‚¢ãƒ«ã‚½ã‚±ãƒƒãƒˆã«å¤‰æ›´ã™ã‚‹
 	AND	%11001111
 	OR	%00100000
 	LD	(SYS_LAST30H),A
