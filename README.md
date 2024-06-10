@@ -1,7 +1,6 @@
 ## PC-8001用 DFPlayer mini ドライバ
-DFP_sample.asm
-- 機械語でDFPaler miniを操作するためのサンプル・サブルーチンです
-
+subroutines.asm
+- デモプログラムで使用されている、DFPaler miniを操作するための機械語サブルーチンです
 
 ## PC-8001用 DFPlayer mini デモプログラム
 dfp_basic.txt
