@@ -1,5 +1,5 @@
 ## PC-8001用 DFPlayer mini デモプログラム
-`demo.txt`
+`demo.bas`
 `demo.wav`
 
 - BASICからDFPlayer miniを操作するためのデモプログラムです
